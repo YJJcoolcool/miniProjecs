@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Expanding Buttons
+	</title>
+	<style type="text/css">
+		#div1{
+			width: 100%;
+			height: 100px;
+			display: flex;
+			justify-content: center;
+		}
+
+		a{
+			text-decoration: none;
+		}
+
+		.div2{
+			font-family: Arial;
+			font-size: 24px;
+			color: white;
+			background-color: red;
+			padding: 14px 10px;
+			border: none;
+			border-radius: 30px;
+			margin: 5px 20px;
+			vertical-align: middle;
+			transition: all 0.5s;
+		}
+		.div2:hover{
+			font-size: 28px;
+			color: black;
+			border: 2px solid red;
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<a><div class="div2" href="">I'm an Admin</div></a>
+		<a><div class="div2" href="">I'm a User</div></a>
+	</div>
+</body>
+</html>
