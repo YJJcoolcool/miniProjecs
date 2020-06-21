@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Infinite Frames</title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            div{
+                width: 99.5%;
+                padding: 1px;
+                height: 99.5%;
+                border: 2px blue solid;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="1"></div>
+        <script>
+            console.log("Hello")
+            var x=0;
+            var y=0;
+            var string1='<div id="';
+            var string2='"></div>';
+            console.log("Ok");
+            function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds){
+                break;
+                }
+            }
+            }
+            while (x<1000) {
+                x+=1;
+                y=x+1;
+                var number=x.toString();
+                var nextnumber=y.toString();
+                var thing = string1.concat(y,string2);
+                console.log(number,thing);
+                document.getElementById(number).innerHTML = thing;
+                console.log("Done!")
+            }
+        </script>
+    </body>
+</html>

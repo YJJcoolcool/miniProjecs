@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat Filter</title>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+        <style>
+            html, body{
+                width: 100%;
+                height: 100%;
+                background-color: #666;
+            }
+
+            *{
+                font-family: "Source Sans Pro", Helvetica, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            form input{
+                position: fixed;
+                height:30px;
+                width: 90%;
+                bottom: 10px;
+                left: 10px;
+                font-size: 24px;
+                padding: 4px;
+                background-color: lightgray;
+            }
+            p{
+                font-size: 20px;
+                color:white;
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="chatlog">Hello</p>
+        <form id="form" onsubmit="update()" action="">
+            <input id="textThing" type="text">
+            <input type="submit" 
+            style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+            tabindex="-1" />
+        </form>
+        <script>
+            $('#form').submit(function () {
+            sendContactForm();
+            return false;
+            });
+            function update(){
+                var e = document.getElementById("chatlog").value;
+                var text = document.getElementById("textThing").value;
+                var para = document.createElement("P");               // Create a <p> element
+                para.innerText = "This is a paragraph";               // Insert text
+                document.body.appendChild(para);  
+                alert("Ok");
+            }
+        </script>
+    </body>
+</html>
