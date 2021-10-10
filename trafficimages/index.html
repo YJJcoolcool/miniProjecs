@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Images</title>
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script>
+        function test(){
+            console.log("Yeah")
+        }
+        $(document).ready(function() {
+            refreshImage()
+            window.setInterval(refreshImage,20000)
+        });
+        
+        function refreshImage(){
+            $.ajax({
+                type: "GET",
+                url: "https://api.data.gov.sg/v1/transport/traffic-images",
+                success: function(data) {
+                    cameralist = data['items'][0]['cameras'];
+                    console.log(cameralist)
+                    for (var i = 0; i < cameralist.length; i++) {
+                        // for each iteration console.log a word
+                        // and make a pause after it
+                        (function (i) {
+                            if (i<9){
+                                id = '#img'+(i+1)
+                                document.querySelector(id).src=cameralist[i]['image'];
+                            }
+                            /*if (cameralist[i]['location']['latitude']==1.34355015 && cameralist[i]['location']['longitude']==103.8601984){
+                                console.log(cameralist[i]['image'])
+                                document.querySelector('#one').src=cameralist[i]['image'];
+                            }*/
+                            /*setTimeout(function () {
+                                document.querySelector('img').src=cameralist[i]['image'];
+                            }, 2000 * i);*/
+                        })(i);
+                    };
+                    setTimeout(function(){
+                        for (var i = 0; i < cameralist.length; i++) {
+                            // for each iteration console.log a word
+                            // and make a pause after it
+                            (function (i) {
+                                if (i>=9 && i<18){
+                                    id = '#img'+(i+1-9)
+                                    document.querySelector(id).src=cameralist[i]['image'];
+                                }
+                            })(i);
+                        };
+                    },10000)
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error "+textStatus+": "+errorThrown);
+                }
+            });
+        }
+    </script>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body div{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 33%;
+            align-items: center;
+            justify-content: center;
+        }
+        div div{
+            display: flex;
+            flex-direction: row;
+            width: 33%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <img id='img1'>
+        </div>
+        <div>
+            <img id='img2'>
+        </div>
+        <div>
+            <img id='img3'>
+        </div>
+    </div>
+    <div>
+        <div>
+            <img id='img4'>
+        </div>
+        <div>
+            <img id='img5'>
+        </div>
+        <div>
+            <img id='img6'>
+        </div>
+    </div>
+    <div>
+        <div>
+            <img id='img7'>
+        </div>
+        <div>
+            <img id='img8'>
+        </div>
+        <div>
+            <img id='img9'>
+        </div>
+    </div>
+</body>
+</html>
